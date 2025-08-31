@@ -1,0 +1,24 @@
+{
+  "name": "dailytrace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:new": "dotenv -e .env -- sh -c 'docker run --rm -it --add-host=host.docker.internal:host-gateway -v \"$PWD\":/work -w /work --env-file .env ghcr.io/amacneil/dbmate:latest new \"$1\"' _",
+    "db:up":  "dotenv -e .env -- sh -c 'docker run --rm -it --add-host=host.docker.internal:host-gateway -v \"$PWD\":/work -w /work --env-file .env ghcr.io/amacneil/dbmate:latest up'",
+    "db:down":"dotenv -e .env -- sh -c 'docker run --rm -it --add-host=host.docker.internal:host-gateway -v \"$PWD\":/work -w /work --env-file .env ghcr.io/amacneil/dbmate:latest down'",
+    "db:redo":"dotenv -e .env -- sh -c 'docker run --rm -it --add-host=host.docker.internal:host-gateway -v \"$PWD\":/work -w /work --env-file .env ghcr.io/amacneil/dbmate:latest redo'",
+    "db:status":"dotenv -e .env -- sh -c 'docker run --rm -it --add-host=host.docker.internal:host-gateway -v \"$PWD\":/work -w /work --env-file .env ghcr.io/amacneil/dbmate:latest status'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv-cli": "^10.0.0",
+    "json": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
