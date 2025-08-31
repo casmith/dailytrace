@@ -1,4 +1,5 @@
 import { Inject, Injectable, BadRequestException } from '@nestjs/common';
+import { EventType } from './dto';
 import { Pool } from 'pg';
 import { randomUUID } from 'crypto';
 
@@ -9,7 +10,7 @@ export class EventsService {
   async insertEvent(input: {
     eventId?: string;
     metricKey: string;
-    type: 'MetricRecorded';
+    type: EventType;
     actor?: string;
     occurredAt: string;   // ISO
     recordedAt?: string;  // ISO
@@ -82,6 +83,22 @@ export class EventsService {
       type: 'MetricRecorded',
       occurredAt,
       payload: { value: input.value, unit: input.unit },
+      idempotencyKey: input.idempotencyKey,
+      actor: 'api',
+    });
+  }
+
+  /**
+   * Add an increment to a daily total for a local calendar date.
+   * We store occurred_at at "noon" America/Chicago to avoid DST-midnight edge cases.
+   */
+  async addDailyIncrement(input: { metricKey: string; date: string; amount: number; unit: string; idempotencyKey?: string }) {
+    const occurredAt = `${input.date} 12:00:00 ${this.tzOffset()}`; // noon local
+    return this.insertEvent({
+      metricKey: input.metricKey,
+      type: 'MetricIncremented',
+      occurredAt,
+      payload: { value: input.amount, unit: input.unit },
       idempotencyKey: input.idempotencyKey,
       actor: 'api',
     });
