@@ -3041,6 +3041,246 @@ INHERITS (_timescaledb_internal._materialized_hypertable_6);
 
 
 --
+-- Name: _hyper_6_316_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_316_chunk (
+    CONSTRAINT constraint_316 CHECK (((bucket_start >= '2025-05-21 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2025-07-30 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_317_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_317_chunk (
+    CONSTRAINT constraint_317 CHECK (((bucket_start >= '2024-03-27 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2024-06-05 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_318_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_318_chunk (
+    CONSTRAINT constraint_318 CHECK (((bucket_start >= '2025-03-12 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2025-05-21 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_319_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_319_chunk (
+    CONSTRAINT constraint_319 CHECK (((bucket_start >= '2023-02-01 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2023-04-12 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_320_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_320_chunk (
+    CONSTRAINT constraint_320 CHECK (((bucket_start >= '2021-12-08 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2022-02-16 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_321_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_321_chunk (
+    CONSTRAINT constraint_321 CHECK (((bucket_start >= '2023-08-30 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2023-11-08 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_322_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_322_chunk (
+    CONSTRAINT constraint_322 CHECK (((bucket_start >= '2021-03-03 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2021-05-12 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_323_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_323_chunk (
+    CONSTRAINT constraint_323 CHECK (((bucket_start >= '2022-04-27 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2022-07-06 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_324_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_324_chunk (
+    CONSTRAINT constraint_324 CHECK (((bucket_start >= '2020-12-23 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2021-03-03 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_325_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_325_chunk (
+    CONSTRAINT constraint_325 CHECK (((bucket_start >= '2024-08-14 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2024-10-23 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_326_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_326_chunk (
+    CONSTRAINT constraint_326 CHECK (((bucket_start >= '2021-09-29 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2021-12-08 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_327_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_327_chunk (
+    CONSTRAINT constraint_327 CHECK (((bucket_start >= '2023-06-21 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2023-08-30 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_328_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_328_chunk (
+    CONSTRAINT constraint_328 CHECK (((bucket_start >= '2021-05-12 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2021-07-21 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_329_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_329_chunk (
+    CONSTRAINT constraint_329 CHECK (((bucket_start >= '2022-11-23 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2023-02-01 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_330_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_330_chunk (
+    CONSTRAINT constraint_330 CHECK (((bucket_start >= '2024-10-23 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2025-01-01 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_331_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_331_chunk (
+    CONSTRAINT constraint_331 CHECK (((bucket_start >= '2023-11-08 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2024-01-17 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_332_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_332_chunk (
+    CONSTRAINT constraint_332 CHECK (((bucket_start >= '2023-04-12 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2023-06-21 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_333_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_333_chunk (
+    CONSTRAINT constraint_333 CHECK (((bucket_start >= '2022-07-06 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2022-09-14 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_334_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_334_chunk (
+    CONSTRAINT constraint_334 CHECK (((bucket_start >= '2024-06-05 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2024-08-14 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_335_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_335_chunk (
+    CONSTRAINT constraint_335 CHECK (((bucket_start >= '2021-07-21 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2021-09-29 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_336_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_336_chunk (
+    CONSTRAINT constraint_336 CHECK (((bucket_start >= '2022-09-14 19:00:00-05'::timestamp with time zone) AND (bucket_start < '2022-11-23 18:00:00-06'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_337_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_337_chunk (
+    CONSTRAINT constraint_337 CHECK (((bucket_start >= '2025-01-01 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2025-03-12 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_338_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_338_chunk (
+    CONSTRAINT constraint_338 CHECK (((bucket_start >= '2022-02-16 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2022-04-27 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
+-- Name: _hyper_6_339_chunk; Type: TABLE; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE TABLE _timescaledb_internal._hyper_6_339_chunk (
+    CONSTRAINT constraint_339 CHECK (((bucket_start >= '2024-01-17 18:00:00-06'::timestamp with time zone) AND (bucket_start < '2024-03-27 19:00:00-05'::timestamp with time zone)))
+)
+INHERITS (_timescaledb_internal._materialized_hypertable_6);
+
+
+--
 -- Name: _partial_view_3; Type: VIEW; Schema: _timescaledb_internal; Owner: -
 --
 
@@ -3134,6 +3374,17 @@ CREATE VIEW public.ca_yearly AS
     bucket_start,
     value
    FROM _timescaledb_internal._materialized_hypertable_5;
+
+
+--
+-- Name: command_ids; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.command_ids (
+    command_id uuid NOT NULL,
+    event_id uuid NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
+);
 
 
 --
@@ -6788,6 +7039,22 @@ ALTER TABLE ONLY _timescaledb_internal._hyper_1_99_chunk
 
 ALTER TABLE ONLY _timescaledb_internal._hyper_1_9_chunk
     ADD CONSTRAINT "9_9_events_pkey" PRIMARY KEY (event_id, occurred_at);
+
+
+--
+-- Name: command_ids command_ids_event_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.command_ids
+    ADD CONSTRAINT command_ids_event_id_key UNIQUE (event_id);
+
+
+--
+-- Name: command_ids command_ids_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.command_ids
+    ADD CONSTRAINT command_ids_pkey PRIMARY KEY (command_id);
 
 
 --
@@ -14269,6 +14536,342 @@ CREATE INDEX _hyper_6_315_chunk__materialized_hypertable_6_metric_key_bucket ON 
 
 
 --
+-- Name: _hyper_6_316_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_316_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_316_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_316_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_316_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_316_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_317_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_317_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_317_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_317_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_317_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_317_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_318_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_318_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_318_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_318_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_318_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_318_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_319_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_319_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_319_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_319_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_319_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_319_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_320_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_320_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_320_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_320_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_320_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_320_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_321_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_321_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_321_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_321_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_321_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_321_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_322_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_322_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_322_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_322_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_322_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_322_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_323_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_323_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_323_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_323_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_323_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_323_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_324_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_324_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_324_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_324_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_324_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_324_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_325_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_325_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_325_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_325_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_325_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_325_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_326_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_326_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_326_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_326_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_326_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_326_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_327_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_327_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_327_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_327_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_327_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_327_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_328_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_328_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_328_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_328_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_328_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_328_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_329_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_329_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_329_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_329_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_329_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_329_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_330_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_330_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_330_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_330_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_330_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_330_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_331_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_331_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_331_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_331_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_331_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_331_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_332_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_332_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_332_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_332_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_332_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_332_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_333_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_333_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_333_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_333_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_333_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_333_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_334_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_334_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_334_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_334_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_334_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_334_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_335_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_335_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_335_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_335_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_335_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_335_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_336_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_336_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_336_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_336_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_336_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_336_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_337_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_337_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_337_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_337_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_337_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_337_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_338_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_338_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_338_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_338_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_338_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_338_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_339_chunk__materialized_hypertable_6_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_339_chunk__materialized_hypertable_6_bucket_start_idx ON _timescaledb_internal._hyper_6_339_chunk USING btree (bucket_start DESC);
+
+
+--
+-- Name: _hyper_6_339_chunk__materialized_hypertable_6_metric_key_bucket; Type: INDEX; Schema: _timescaledb_internal; Owner: -
+--
+
+CREATE INDEX _hyper_6_339_chunk__materialized_hypertable_6_metric_key_bucket ON _timescaledb_internal._hyper_6_339_chunk USING btree (metric_key, bucket_start DESC);
+
+
+--
 -- Name: _materialized_hypertable_3_bucket_start_idx; Type: INDEX; Schema: _timescaledb_internal; Owner: -
 --
 
@@ -16107,4 +16710,5 @@ CREATE TRIGGER ts_insert_blocker BEFORE INSERT ON public.events FOR EACH ROW EXE
 INSERT INTO public.schema_migrations (version) VALUES
     ('20250831175834'),
     ('20250831175931'),
+    ('20250831195824'),
     ('20250902');
