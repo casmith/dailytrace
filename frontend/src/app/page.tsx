@@ -5,16 +5,11 @@ import {
   Container,
   Typography,
   Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   TextField,
   Button,
   Stack,
 } from "@mui/material";
+import { ActivityMap } from "./ActivityMap";
 
 interface DrinkEntry {
   date: string;
@@ -133,26 +128,9 @@ export default function Home() {
         </form>
       </Paper>
       <Typography variant="h6" gutterBottom>
-        Recent Entries
+        Activity Map
       </Typography>
-      <TableContainer component={Paper}>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell align="right">Drinks</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {entries.map((entry) => (
-              <TableRow key={entry.date}>
-                <TableCell>{entry.date}</TableCell>
-                <TableCell align="right">{entry.drinks}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+  <ActivityMap entries={entries} limit={4} />
     </Container>
   );
 }
