@@ -1,0 +1,180 @@
+openapi: 3.0.3
+info:
+  title: DailyTrace API
+  version: 1.0.0
+paths:
+  /events:
+    post:
+      summary: Insert a new event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventInput'
+      parameters:
+        - name: idempotency-key
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event inserted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  eventId:
+                    type: string
+                  idempotent:
+                    type: boolean
+  /commands/record-daily-total:
+    post:
+      summary: Record a daily total
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecordDailyInput'
+      parameters:
+        - name: idempotency-key
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Daily total recorded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  eventId:
+                    type: string
+                  idempotent:
+                    type: boolean
+  /commands/add-daily-increment:
+    post:
+      summary: Add a daily increment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddIncrementInput'
+      parameters:
+        - name: idempotency-key
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Daily increment added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  eventId:
+                    type: string
+                  idempotent:
+                    type: boolean
+  /metrics/{key}/series:
+    get:
+      summary: Get time series for a metric
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Time series data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                    value:
+                      type: number
+components:
+  schemas:
+    EventInput:
+      type: object
+      properties:
+        eventId:
+          type: string
+          format: uuid
+        metricKey:
+          type: string
+        type:
+          type: string
+          enum: [MetricRecorded, MetricIncremented]
+        actor:
+          type: string
+        occurredAt:
+          type: string
+          format: date-time
+        recordedAt:
+          type: string
+          format: date-time
+        payload:
+          type: object
+          properties:
+            value:
+              type: number
+            unit:
+              type: string
+    RecordDailyInput:
+      type: object
+      properties:
+        metricKey:
+          type: string
+        date:
+          type: string
+          pattern: '^\\d{4}-\\d{2}-\\d{2}$'
+        value:
+          type: number
+        unit:
+          type: string
+    AddIncrementInput:
+      type: object
+      properties:
+        metricKey:
+          type: string
+        date:
+          type: string
+          pattern: '^\\d{4}-\\d{2}-\\d{2}$'
+        amount:
+          type: number
+        unit:
+          type: string
