@@ -16,7 +16,9 @@ interface DrinkEntry {
 }
 
 // Use environment variable, fallback to default
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8081";
+const BACKEND_URL = typeof window !== "undefined" && window.RUNTIME_CONFIG?.BACKEND_URL
+  ? window.RUNTIME_CONFIG.BACKEND_URL
+  : "http://localhost:8081";
 
 export default function Home() {
   const [date, setDate] = useState(() => {
