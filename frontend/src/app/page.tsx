@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 import {
@@ -16,6 +15,9 @@ interface DrinkEntry {
   drinks: number;
 }
 
+// Use environment variable, fallback to default
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8081";
+
 export default function Home() {
   const [date, setDate] = useState(() => {
     const today = new Date();
@@ -30,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const res = await fetch("http://localhost:8081/metrics/alcoholic_drinks/series");
+        const res = await fetch(`${BACKEND_URL}/metrics/alcoholic_drinks/series`);
         if (!res.ok) throw new Error("Failed to fetch entries");
         const data = await res.json();
         // Map API response to DrinkEntry[]
@@ -53,7 +55,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:8081/commands/record-daily-total", {
+      const res = await fetch(`${BACKEND_URL}/commands/record-daily-total`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +71,7 @@ export default function Home() {
       // Refresh entries after successful log
       const fetchEntries = async () => {
         try {
-          const res = await fetch("http://localhost:8081/metrics/alcoholic_drinks/series");
+          const res = await fetch(`${BACKEND_URL}/metrics/alcoholic_drinks/series`);
           if (!res.ok) throw new Error("Failed to fetch entries");
           const data = await res.json();
           const mapped: DrinkEntry[] = data
