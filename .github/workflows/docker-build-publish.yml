@@ -8,12 +8,15 @@ on:
 jobs:
   get-version:
     runs-on: ubuntu-latest
+    outputs:
+      next_version: ${{ steps.get_version.outputs.next_version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: get version
         id: get_version
-        run: echo "next_version=$(printf '%(%Y.%m.%d.)T'; git rev-parse --short=8 HEAD)" >> $GITHUB_OUTPUT
+        run: |
+          echo "next_version=$(date +'%Y.%m.%d.')$(git rev-parse --short=8 HEAD)" >> $GITHUB_OUTPUT
 
   build-api:
     runs-on: ubuntu-latest
