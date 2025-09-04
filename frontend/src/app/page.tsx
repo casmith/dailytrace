@@ -18,7 +18,7 @@ interface DrinkEntry {
 // Use environment variable, fallback to default
 const BACKEND_URL = typeof window !== "undefined" && window.RUNTIME_CONFIG?.BACKEND_URL
   ? window.RUNTIME_CONFIG.BACKEND_URL
-  : "http://localhost:8081";
+  : "https://dailytrace.kalde.in/api";
 
 export default function Home() {
   const [date, setDate] = useState(() => {
