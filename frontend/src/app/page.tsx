@@ -25,7 +25,7 @@ export default function Home() {
     const today = new Date();
     return today.toISOString().slice(0, 10);
   });
-  const [drinks, setDrinks] = useState<number>(0);
+  const [drinks, setDrinks] = useState<string>("");
   const [entries, setEntries] = useState<DrinkEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,6 +57,7 @@ export default function Home() {
     setLoading(true);
     setError(null);
     try {
+      const value = drinks === "" ? null : Number(drinks);
       const res = await fetch(`${BACKEND_URL}/commands/record-daily-total`, {
         method: "POST",
         headers: {
@@ -65,7 +66,7 @@ export default function Home() {
         body: JSON.stringify({
           metricKey: "alcoholic_drinks",
           date,
-          value: drinks,
+          value,
           unit: "drink",
         }),
       });
@@ -88,7 +89,7 @@ export default function Home() {
         }
       };
       await fetchEntries();
-      setDrinks(0);
+      setDrinks("");
     } catch (err: any) {
       setError("Failed to log drinks.");
     } finally {
@@ -116,8 +117,8 @@ export default function Home() {
               label="Drinks"
               type="number"
               value={drinks}
-              onChange={(e) => setDrinks(Number(e.target.value))}
-              inputProps={{ min: 0 }}
+              onChange={(e) => setDrinks(e.target.value.replace(/^0+/, ""))}
+              inputProps={{ min: 0, inputMode: "numeric", pattern: "[0-9]*" }}
               fullWidth
             />
             <Button type="submit" variant="contained" disabled={loading}>
