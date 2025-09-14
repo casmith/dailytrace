@@ -21,10 +21,7 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
   : "https://dailytrace.kalde.in/api";
 
 export default function Home() {
-  const [date, setDate] = useState(() => {
-    const today = new Date();
-    return today.toISOString().slice(0, 10);
-  });
+  const [date, setDate] = useState<string>("");
   const [drinks, setDrinks] = useState<string>("");
   const [entries, setEntries] = useState<DrinkEntry[]>([]);
   const [loading, setLoading] = useState(false);
@@ -45,8 +42,22 @@ export default function Home() {
           }))
           .sort((a: DrinkEntry, b: DrinkEntry) => b.date.localeCompare(a.date));
         setEntries(mapped);
+        
+        // Set default date to day after last check-in
+        if (mapped.length > 0) {
+          const lastDate = mapped[0].date;
+          const nextDate = new Date(lastDate);
+          nextDate.setDate(nextDate.getDate() + 1);
+          setDate(nextDate.toISOString().slice(0, 10));
+        } else {
+          const today = new Date();
+          setDate(today.toISOString().slice(0, 10));
+        }
       } catch (err) {
         setError("Failed to fetch entries.");
+        // fallback to today if error
+        const today = new Date();
+        setDate(today.toISOString().slice(0, 10));
       }
     };
     fetchEntries();
@@ -84,6 +95,14 @@ export default function Home() {
             }))
             .sort((a: DrinkEntry, b: DrinkEntry) => b.date.localeCompare(a.date));
           setEntries(mapped);
+          
+          // Update default date to day after new last check-in
+          if (mapped.length > 0) {
+            const lastDate = mapped[0].date;
+            const nextDate = new Date(lastDate);
+            nextDate.setDate(nextDate.getDate() + 1);
+            setDate(nextDate.toISOString().slice(0, 10));
+          }
         } catch (err) {
           setError("Failed to fetch entries.");
         }
