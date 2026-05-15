@@ -136,7 +136,7 @@ export default function Home() {
               label="Drinks"
               type="number"
               value={drinks}
-              onChange={(e) => setDrinks(e.target.value.replace(/^0+/, ""))}
+              onChange={(e) => setDrinks(e.target.value.replace(/^0+(?=\d)/, ""))}
               inputProps={{ min: 0, inputMode: "numeric", pattern: "[0-9]*" }}
               fullWidth
             />
