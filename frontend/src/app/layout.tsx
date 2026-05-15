@@ -27,7 +27,7 @@ export default function RootLayout({
         <script src="/config/config.js" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable}`}
       >
         {children}
       </body>
