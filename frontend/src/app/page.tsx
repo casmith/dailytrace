@@ -1,160 +1,238 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Typography,
-  Paper,
-  TextField,
-  Button,
-  Stack,
-} from "@mui/material";
-import { ActivityMap } from "./ActivityMap";
 
-interface DrinkEntry {
-  date: string;
-  drinks: number;
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import Alert from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Skeleton from "@mui/material/Skeleton";
+import Snackbar from "@mui/material/Snackbar";
+import { ActivityMap } from "@/components/ActivityMap";
+import { CheckIn } from "@/components/CheckIn";
+import { Section } from "@/components/Section";
+import { StatStrip } from "@/components/StatStrip";
+import { StreakHero } from "@/components/StreakHero";
+import { TopBar } from "@/components/TopBar";
+import { fetchSeries, recordDailyTotal } from "@/lib/api";
+import { DAILY_CAP, HISTORY_DAYS } from "@/lib/config";
+import { DateKey, formatDay, fromKey, shiftKey, startOfToday, toKey } from "@/lib/date";
+import {
+  EntryMap,
+  currentStreak,
+  lastLoggedDate,
+  longestStreak,
+  nextCheckinDate,
+  summarize,
+  toEntryMap,
+} from "@/lib/stats";
+import { v } from "@/theme/tokens";
+
+interface Undoable {
+  date: DateKey;
+  previous: number | undefined;
+  message: string;
 }
 
-// Use environment variable, fallback to default
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-  ? process.env.NEXT_PUBLIC_BACKEND_URL + "/api"
-  : "https://dailytrace.kalde.in/api";
-
 export default function Home() {
-  const [date, setDate] = useState<string>("");
-  const [drinks, setDrinks] = useState<string>("");
-  const [entries, setEntries] = useState<DrinkEntry[]>([]);
-  const [loading, setLoading] = useState(false);
+  // Resolved on the client: the static HTML must not bake in the build date.
+  const [todayKey, setTodayKey] = useState<DateKey | null>(null);
+  const [entries, setEntries] = useState<EntryMap>({});
+  const [selected, setSelected] = useState<DateKey | null>(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [toast, setToast] = useState<Undoable | null>(null);
 
-  // Fetch recent entries from API
-  useEffect(() => {
-    const fetchEntries = async () => {
-      try {
-        const res = await fetch(`${BACKEND_URL}/metrics/alcoholic_drinks/series`);
-        if (!res.ok) throw new Error("Failed to fetch entries");
-        const data = await res.json();
-        // Map API response to DrinkEntry[]
-        const mapped: DrinkEntry[] = data
-          .map((row: any) => ({
-            date: row.time.slice(0, 10),
-            drinks: Number(row.value),
-          }))
-          .sort((a: DrinkEntry, b: DrinkEntry) => b.date.localeCompare(a.date));
-        setEntries(mapped);
-        
-        // Set default date to day after last check-in
-        if (mapped.length > 0) {
-          const lastDate = mapped[0].date;
-          const nextDate = new Date(lastDate);
-          nextDate.setDate(nextDate.getDate() + 1);
-          setDate(nextDate.toISOString().slice(0, 10));
-        } else {
-          const today = new Date();
-          setDate(today.toISOString().slice(0, 10));
-        }
-      } catch (err) {
-        setError("Failed to fetch entries.");
-        // fallback to today if error
-        const today = new Date();
-        setDate(today.toISOString().slice(0, 10));
-      }
-    };
-    fetchEntries();
-  }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  const load = useCallback(async (today: DateKey, selectDefault: boolean) => {
     setError(null);
     try {
-      const value = drinks === "" ? null : Number(drinks);
-      const res = await fetch(`${BACKEND_URL}/commands/record-daily-total`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          metricKey: "alcoholic_drinks",
-          date,
-          value,
-          unit: "drink",
-        }),
-      });
-      if (!res.ok) throw new Error("Failed to log drinks");
-      // Refresh entries after successful log
-      const fetchEntries = async () => {
-        try {
-          const res = await fetch(`${BACKEND_URL}/metrics/alcoholic_drinks/series`);
-          if (!res.ok) throw new Error("Failed to fetch entries");
-          const data = await res.json();
-          const mapped: DrinkEntry[] = data
-            .map((row: any) => ({
-              date: row.time.slice(0, 10),
-              drinks: Number(row.value),
-            }))
-            .sort((a: DrinkEntry, b: DrinkEntry) => b.date.localeCompare(a.date));
-          setEntries(mapped);
-          
-          // Update default date to day after new last check-in
-          if (mapped.length > 0) {
-            const lastDate = mapped[0].date;
-            const nextDate = new Date(lastDate);
-            nextDate.setDate(nextDate.getDate() + 1);
-            setDate(nextDate.toISOString().slice(0, 10));
-          }
-        } catch (err) {
-          setError("Failed to fetch entries.");
-        }
-      };
-      await fetchEntries();
-      setDrinks("");
-    } catch (err: any) {
-      setError("Failed to log drinks.");
+      const map = toEntryMap(await fetchSeries());
+      setEntries(map);
+      if (selectDefault) setSelected(nextCheckinDate(map, today));
+    } catch {
+      setError("Couldn't reach the API. Check the backend and try again.");
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    const today = toKey(startOfToday());
+    setTodayKey(today);
+    setSelected(today);
+    void load(today, true);
+  }, [load]);
+
+  const summary = useMemo(
+    () => summarize(entries, DAILY_CAP, todayKey ?? ""),
+    [entries, todayKey],
+  );
+  const lastDay = todayKey ? lastLoggedDate(entries, todayKey) : null;
+  const nextDay = todayKey ? nextCheckinDate(entries, todayKey) : null;
+
+  const log = async (value: number) => {
+    if (!selected || !todayKey) return;
+    const date = selected;
+    const previous = entries[date];
+    setBusy(true);
+    setEntries((current) => ({ ...current, [date]: value })); // optimistic
+    try {
+      await recordDailyTotal(date, value);
+      setToast({
+        date,
+        previous,
+        message: `Logged ${value} for ${formatDay(date, todayKey)}`,
+      });
+      // Move on to the next day that needs a check-in.
+      setSelected(nextCheckinDate({ ...entries, [date]: value }, todayKey));
+      void load(todayKey, false);
+    } catch {
+      setEntries((current) => {
+        const reverted = { ...current };
+        if (previous === undefined) delete reverted[date];
+        else reverted[date] = previous;
+        return reverted;
+      });
+      setError(`Couldn't save ${formatDay(date, todayKey)}. Nothing was recorded.`);
+    } finally {
+      setBusy(false);
+    }
   };
 
+  const undo = async () => {
+    if (!toast || toast.previous === undefined || !todayKey) return;
+    const { date, previous } = toast;
+    setToast(null);
+    setBusy(true);
+    try {
+      await recordDailyTotal(date, previous);
+      setEntries((current) => ({ ...current, [date]: previous }));
+      setSelected(date);
+      void load(todayKey, false);
+    } catch {
+      setError("Couldn't undo that check-in.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const ready = todayKey !== null && selected !== null && !loading;
+
   return (
-    <Container maxWidth="sm" sx={{ py: 4 }}>
-      <Typography variant="h4" align="center" gutterBottom>
-        Daily Drinks Tracker
-      </Typography>
-      <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
-        <form onSubmit={handleSubmit}>
-          <Stack spacing={2}>
-            <TextField
-              label="Date"
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              InputLabelProps={{ shrink: true }}
-              fullWidth
+    <Box sx={{ minHeight: "100vh", background: v("bg"), py: { xs: 2, sm: 5 }, px: 1.5 }}>
+      <Box
+        sx={{
+          position: "relative",
+          maxWidth: 424,
+          mx: "auto",
+          background: v("surface"),
+          border: `1px solid ${v("line")}`,
+          borderRadius: { xs: "20px", sm: "26px" },
+          overflow: "hidden",
+          boxShadow: "0 24px 60px -30px rgba(0,0,0,.55)",
+        }}
+      >
+        <TopBar />
+
+        <StreakHero
+          streak={ready ? currentStreak(entries, DAILY_CAP, todayKey) : 0}
+          best={ready ? longestStreak(entries, DAILY_CAP, todayKey) : 0}
+          lastDay={ready && lastDay ? formatDay(lastDay, todayKey) : null}
+          cap={DAILY_CAP}
+          loading={!ready}
+        />
+
+        <Section
+          title="Daily standard drinks"
+          aside={
+            ready ? (
+              <Box className="dt-num" sx={{ fontSize: 11, color: v("ink-3") }}>
+                {`${fromKey(shiftKey(todayKey, -(HISTORY_DAYS - 1))).toLocaleDateString(undefined, {
+                  month: "short",
+                  year: "numeric",
+                })} → today`}
+              </Box>
+            ) : null
+          }
+        >
+          {ready ? (
+            <ActivityMap
+              entries={entries}
+              cap={DAILY_CAP}
+              todayKey={todayKey}
+              selected={selected}
+              onSelect={setSelected}
+              days={HISTORY_DAYS}
             />
-            <TextField
-              label="Drinks"
-              type="number"
-              value={drinks}
-              onChange={(e) => setDrinks(e.target.value.replace(/^0+(?=\d)/, ""))}
-              inputProps={{ min: 0, inputMode: "numeric", pattern: "[0-9]*" }}
-              fullWidth
-            />
-            <Button type="submit" variant="contained" disabled={loading}>
-              {loading ? "Logging..." : "Log Drinks"}
-            </Button>
-            {error && (
-              <Typography color="error" variant="body2">
-                {error}
-              </Typography>
-            )}
-          </Stack>
-        </form>
-      </Paper>
-      <Typography variant="h6" gutterBottom>
-        Activity Map
-      </Typography>
-  <ActivityMap entries={entries} limit={4} />
-    </Container>
+          ) : (
+            <Skeleton variant="rounded" height={116} />
+          )}
+        </Section>
+
+        {ready ? (
+          <StatStrip summary={summary} />
+        ) : (
+          <Section>
+            <Skeleton variant="rounded" height={44} />
+          </Section>
+        )}
+
+        {ready && (
+          <CheckIn
+            selected={selected}
+            value={entries[selected]}
+            todayKey={todayKey}
+            cap={DAILY_CAP}
+            isNextCheckin={selected === nextDay}
+            busy={busy}
+            onSelectDate={setSelected}
+            onLog={log}
+          />
+        )}
+
+        {error && (
+          <Box sx={{ px: 2.25, pb: 2.25 }}>
+            <Alert
+              severity="error"
+              variant="outlined"
+              action={
+                todayKey && (
+                  <Button color="inherit" size="small" onClick={() => void load(todayKey, !selected)}>
+                    Retry
+                  </Button>
+                )
+              }
+            >
+              {error}
+            </Alert>
+          </Box>
+        )}
+
+        <Snackbar
+          open={toast !== null}
+          autoHideDuration={4500}
+          onClose={() => setToast(null)}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          sx={{ position: "absolute", left: 14, right: 14, bottom: 14, transform: "none" }}
+          message={toast?.message}
+          action={
+            toast?.previous !== undefined ? (
+              <Button size="small" onClick={() => void undo()} sx={{ color: v("accent") }}>
+                Undo
+              </Button>
+            ) : undefined
+          }
+          ContentProps={{
+            sx: {
+              width: "100%",
+              background: v("surface-2"),
+              color: v("ink"),
+              border: `1px solid ${v("line")}`,
+              fontSize: 12.5,
+              boxShadow: "0 14px 30px -18px rgba(0,0,0,.8)",
+            },
+          }}
+        />
+      </Box>
+    </Box>
   );
 }
